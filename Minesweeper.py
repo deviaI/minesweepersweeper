@@ -108,6 +108,7 @@ def random_trial(N, show_all=False, show_ocs=False, verif=[False, 0, 0]):
             if fc:
                 if show_ocs:
                     print("Board below successfully checked")
+                    print("Board nr. " + str(l) + " and successful board nr. " + str(ctr+1))
                     print_board(checked_board)
                 ctr += 1
                 n_E = 0
@@ -128,11 +129,11 @@ def random_trial(N, show_all=False, show_ocs=False, verif=[False, 0, 0]):
         avg_E = sum(l_n_E) / len(l_n_E)
         print("Checked " + str(l) + " random boards")
         print("Found " + str(ctr) + " boards with possible one click solves")
-        print("Odds of getting a one click solvable board: " + str(ctr / l))
+        print("Odds of getting a one click solvable board: " + str((ctr / l)*100) + "%")
         print("Average number of empty tiles in a one-click-solvable board: " + str(avg_E))
-        print("Odds of successful one-click-solve of a ocs board: " + str(avg_E / (rows * cols)))
-        print("Overall odds of getting a one-click-solvable board AND winning it in one click: " + str(
-            (ctr / l) * (avg_E / (rows * cols))))
+        print("Odds of successful one-click-solve of a ocs board: " + str((avg_E / (rows * cols))*100) + "%")
+        print("Overall odds of getting a one-click-solvable board AND winning it in one click: " + str((
+            (ctr / l) * (avg_E / (rows * cols)))*100) + "%")
 
 
-random_trial(100000, show_all=False, show_ocs=False, verif=[True, 10, 10])
+random_trial(5000000, show_all=False, show_ocs=True, verif=[False, 10, 10])
